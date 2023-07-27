@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LeftArmMech
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Spine
+    m_Weight: 0
+  - m_Path: Armature/Spine/Dick
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Hips_protection.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Hips_protection.L/Sheath
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Hips_protection.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.L/knee.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.L/knee.L/Lower_leg.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.R/knee.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Hips/Upper_leg.R/knee.R/Lower_leg.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Head
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.L/Upper_Arm.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.L/Upper_Arm.L/elbow.L
+    m_Weight: 1
+  - m_Path: Armature/Spine/Torso/Shoulder.L/Upper_Arm.L/elbow.L/Lower_Arm.L
+    m_Weight: 1
+  - m_Path: Armature/Spine/Torso/Shoulder.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.R/Upper_Arm.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.R/Upper_Arm.R/elbow.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.R/Upper_Arm.R/elbow.R/Lower_Arm.R
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Shoulder.R/Upper_Arm.R/elbow.R/Lower_Arm.R/Sword
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Wing.L
+    m_Weight: 0
+  - m_Path: Armature/Spine/Torso/Wing.R
+    m_Weight: 0
+  - m_Path: Cube
+    m_Weight: 0
+  - m_Path: Cube.002
+    m_Weight: 0
+  - m_Path: Cube.003
+    m_Weight: 0
