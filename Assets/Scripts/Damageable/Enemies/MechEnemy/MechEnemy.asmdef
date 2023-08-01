@@ -1,0 +1,21 @@
+{
+    "name": "MechEnemy",
+    "rootNamespace": "",
+    "references": [
+        "GUID:609ea76733aa7fcc989df5b8e5a43c9b",
+        "GUID:41ef1a70b6d079a579e3a62fd0675ee4",
+        "GUID:7f7d1af65c2641843945d409d28f2e20",
+        "GUID:9698ad43e4996b1af8f3e4128f3478de",
+        "GUID:fbfc4930ccee1d924be4eb81ca061078",
+        "GUID:ba87229c5bb0c56e1a8cddecb7a75240"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

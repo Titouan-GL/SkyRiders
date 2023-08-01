@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - DamageEnnemies
+  - PlayerGuard
+  - UNS
   layers:
   - Default
   - TransparentFX
@@ -15,13 +17,13 @@ TagManager:
   - Post Process
   - Player
   - SlidingLayer
-  - playerBullet
+  - PlayerProjectiles
   - Ennemy
-  - PlayerSlash
+  - PlayerMelee
   - Ground
-  - 
-  - 
-  - 
+  - EnnemyMelee
+  - EnnemyProjectiles
+  - PlayerGuard
   - 
   - 
   - 

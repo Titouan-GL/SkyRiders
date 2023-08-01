@@ -1,0 +1,17 @@
+{
+    "name": "EasyAssemblyEnemies",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9698ad43e4996b1af8f3e4128f3478de",
+        "GUID:609ea76733aa7fcc989df5b8e5a43c9b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
