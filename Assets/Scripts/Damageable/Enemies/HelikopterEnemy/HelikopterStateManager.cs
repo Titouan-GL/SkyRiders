@@ -7,6 +7,7 @@ public class HelikopterStateManager : MonoBehaviour
     [SerializeField]public float loseSightDistance;
     [SerializeField]public float sightDistance;
     [SerializeField]public float fireDistance;
+    [SerializeField]public float fleeDistance;
     [SerializeField]public float meleeDistance;
     [SerializeField]public float stopForward;
 

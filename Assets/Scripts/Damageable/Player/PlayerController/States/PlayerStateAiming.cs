@@ -7,7 +7,7 @@ public class PlayerStateAiming : PlayerBaseState
     }
 
     public override void ExitState(InputsManager inputs){
-
+        inputs.combatScript.ReloadAll();
     }
 
     public override void UpdateState(InputsManager inputs){
@@ -30,34 +30,38 @@ public class PlayerStateAiming : PlayerBaseState
         inputs.cameraScript.FixedUpdateAiming();
 
         inputs.UIScript.UIAim();
+        inputs.UpdateUI();
     }
 
     private void CheckInputs(InputsManager inputs){
-        if(!(inputs.inputHeld == InputsManager.Inputs.Aim)){
+        if(!(inputs.inputHeld == InputsManager.Inputs.Aim) && inputs.combatScript.FinishedFiring()){
             inputs.SwitchState(inputs.movingState);
         }
         else{
-            if(inputs.attackHeld == InputsManager.Inputs.Attack){
-                inputs.combatScript.Fire1Hold();
-            }
             if(inputs.attackReleased == InputsManager.Inputs.Attack){
                 inputs.combatScript.Fire1Release();
             }
-
-            if(inputs.attackHeld == InputsManager.Inputs.Guard){
-                inputs.combatScript.Fire2Hold();
-            }
-            if(inputs.attackReleased == InputsManager.Inputs.Guard){
+            else if(inputs.attackReleased == InputsManager.Inputs.Guard){
                 inputs.combatScript.Fire2Release();
             }
 
+            if(inputs.attackHeld == InputsManager.Inputs.Attack){
+                inputs.combatScript.Fire1Hold();
+                inputs.UIScript.RocketUnAim();
+            }
+            else if(inputs.attackHeld == InputsManager.Inputs.Guard){
+                inputs.combatScript.Fire2Hold();
+            }
+            else{
+                inputs.UIScript.RocketUnAim();
+            }
+
         }
 
-        if(inputs.inputBuffered == InputsManager.Inputs.Jump){
+        if(Input.GetButton("Jump")){
             inputs.movementScript.Jump();
-            inputs.inputBuffered = InputsManager.Inputs.None;
         }
-        else if(inputs.inputBuffered == InputsManager.Inputs.Fly){
+        else if(inputs.inputBuffered == InputsManager.Inputs.Fly && inputs.combatScript.FinishedFiring()){
             inputs.SwitchState(inputs.flyingState);
             inputs.inputBuffered = InputsManager.Inputs.None;
         }

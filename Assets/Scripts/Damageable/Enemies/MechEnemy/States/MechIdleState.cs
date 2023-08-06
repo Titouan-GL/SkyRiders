@@ -11,7 +11,12 @@ public class MechIdleState : MechBaseState
     }
 
     public override void UpdatePhysics(MechStateManager mech){
-        if(mech.playerDistance < mech.sightDistance){
+        mech.movement.SetNavMeshDestination(mech.movement.GetPatrolLocation());
+        Debug.Log(mech.movement.GetPatrolLocation());
+        mech.movement.RotateTowardsTargetPatrol();
+        mech.movement.UpdatePathTarget();
+        Debug.Log(mech.playerDistance);
+        if(mech.movement.CanDetectPlayer() && mech.playerDistance < mech.sightDistance){
             mech.SwitchState(mech.distanceState);
         }
     }

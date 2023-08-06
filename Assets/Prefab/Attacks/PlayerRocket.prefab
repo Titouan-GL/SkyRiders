@@ -377,7 +377,8 @@ MonoBehaviour:
   instantiateOnDeath:
   - {fileID: 6510172471287012165, guid: dfe1df4196400c3d7ae063491ed726d1, type: 3}
   damagesDealt: 15
-  rotationSpeed: 0.2
+  rotationSpeedMax: 0.6
+  rotationSpeedIncreasePerSeconds: 0.2
   rb: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &-1952579468287658924

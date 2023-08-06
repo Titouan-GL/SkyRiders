@@ -25,20 +25,17 @@ public class Bullet : MonoBehaviour
         }
         rb.velocity = transform.forward * speed;
         transform.rotation = rotation;
-        /*RaycastHit hit;
+        RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, speed * Time.fixedDeltaTime,layerMask)){
             foreach(GameObject go in instantiateOnDeath){
                 Instantiate(go, hit.point, Quaternion.LookRotation(hit.normal));
             }
             if(hit.collider.gameObject.GetComponentInChildren<Damageable>()){
                 hit.collider.gameObject.GetComponentInChildren<Damageable>().takeDamage(damagesDealt);
-                UtilitiesStatic.Shake();
-            }
-            else if(hit.collider.gameObject.GetComponentInChildren<Combat>()){
-                hit.collider.gameObject.GetComponentInChildren<Combat>().takeDamage(damagesDealt, false);
+                //UtilitiesStatic.Shake();
             }
             mustDie = true;
-        }*/
+        }
     }
     void OnTriggerEnter(Collider other){
         foreach(GameObject go in instantiateOnDeath){
@@ -46,7 +43,7 @@ public class Bullet : MonoBehaviour
         }
         if(other.gameObject.GetComponentInChildren<Damageable>()){
             other.gameObject.GetComponentInChildren<Damageable>().takeDamage(damagesDealt);
-            UtilitiesStatic.Shake();
+            //UtilitiesStatic.Shake();
             
         }
         Destroy(gameObject);

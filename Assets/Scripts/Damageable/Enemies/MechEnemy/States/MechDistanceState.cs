@@ -23,9 +23,11 @@ public class MechDistanceState : MechBaseState
         mech.movement.TestForStrafing();
 
         mech.combat.TestAiming();
-        mech.combat.TryFire();
+        if(mech.playerDistance > mech.meleeDistance){
+            mech.combat.TryFire();
+        }
 
-        if(mech.playerDistance < mech.meleeDistance){
+        if(mech.playerDistance < mech.meleeDistance && mech.movement.isInRangeOfMelee()){
             mech.SwitchState(mech.meleeState);
         }
         if(mech.playerDistance > mech.sightDistance){

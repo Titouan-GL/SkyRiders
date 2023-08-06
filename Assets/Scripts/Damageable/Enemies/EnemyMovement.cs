@@ -10,6 +10,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] public Transform goToTarget;
 
 
+    [Header("NavMesh")]
+    [SerializeField] protected List<Transform> pathFollowTransforms;
+
+
     protected UnityEngine.AI.NavMeshAgent navMeshAgent;
     protected UtilitiesNonStatic UNS;
     protected bool navMeshControl;
@@ -17,12 +21,14 @@ public class EnemyMovement : MonoBehaviour
     protected LayerMask layerMaskLevel;
 
     protected float ySpeed;
-    [SerializeField] protected float fleeDistance;
+    [SerializeField] protected float fleeingMagnitude;
     protected float baseNavMeshOffset;
     protected Vector3 addedVelocity;
 
     [HideInInspector]public Vector3 positionMoved;
     protected Vector3 previousPosition;
+
+    protected int pathIndex;
     
     public virtual void Awake()
     {
@@ -32,6 +38,26 @@ public class EnemyMovement : MonoBehaviour
         baseNavMeshOffset = navMeshAgent.baseOffset;
         playerTransform = UNS.player.transform;
         layerMaskLevel = UNS.layerMaskLevel;
+    }
+
+    public void UpdatePathTarget(){
+        if((pathFollowTransforms[pathIndex].position - transform.position).magnitude < 15f){
+            pathIndex += 1;
+            if(pathIndex >= pathFollowTransforms.Count){
+                pathIndex = 0;
+            }
+        }
+    }
+
+    public Vector3 GetPatrolLocation(){
+        return pathFollowTransforms[pathIndex].position;
+    }
+
+    public void RotateTowardsTargetPatrol(){
+        Vector3 direction = pathFollowTransforms[pathIndex].position - transform.position;
+        direction.y = 0f;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.05f);
     }
 
     public void Start(){
@@ -66,7 +92,7 @@ public class EnemyMovement : MonoBehaviour
         float lerpSpeed = 0.2f;
         Vector3 direction = transform.position - playerTransform.position;
         direction.y = 0;
-        goToTarget.position = Vector3.Lerp(goToTarget.position, playerTransform.position + direction.normalized * fleeDistance, lerpSpeed);
+        goToTarget.position = Vector3.Lerp(goToTarget.position, playerTransform.position + direction.normalized * fleeingMagnitude, lerpSpeed);
     }
 
     public float GetPlayerDistance(){
@@ -83,6 +109,24 @@ public class EnemyMovement : MonoBehaviour
         }
         else{
             return rotation;
+        }
+    }
+
+    public Vector3 GetRotationToTarget(){
+        Vector3 direction = goToTarget.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        return targetRotation.eulerAngles - transform.eulerAngles;
+    }
+
+    public bool CanDetectPlayer(){
+        RaycastHit hit;
+        Vector3 raycastDirection = playerTransform.position - transform.position;
+        Debug.DrawRay(transform.position, raycastDirection, Color.magenta);
+        if(!Physics.Raycast(transform.position, raycastDirection.normalized, out hit, raycastDirection.magnitude, UNS.layerMaskLevel)){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

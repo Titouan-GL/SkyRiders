@@ -18,7 +18,7 @@ public class HelikopterDistanceState : HelikopterBaseState
 
         heliko.combat.TryFire();
 
-        if(heliko.playerDistance < heliko.meleeDistance){
+        if(heliko.playerDistance < heliko.fleeDistance){
             heliko.SwitchState(heliko.meleeState);
         }
         if(heliko.playerDistance > heliko.sightDistance){

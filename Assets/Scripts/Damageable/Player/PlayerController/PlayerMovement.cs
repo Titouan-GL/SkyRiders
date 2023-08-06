@@ -8,11 +8,14 @@ public class PlayerMovement : MonoBehaviour
     private float maximumPlaneSpeed = 40f;
     [HideInInspector]public float speed;
     private float gravityScale = 10f;
-    private float jumpSpeed = 50;
+    private float jumpSpeed = 10;
     private CharacterController characterController;
     [HideInInspector] public bool OnGround;
     private LayerMask layerMaskLevel;
     private UtilitiesNonStatic UNS;
+    private float jumpFuelTimeMax = 5f;
+    public float jumpFuelTime = 5f;
+    public float verticalSpeedMax = 20f;
 
     [HideInInspector] private InputsManager inputs;
 
@@ -21,12 +24,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform cameraTransform;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update10
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         inputs = GetComponent<InputsManager>();
         UNS = UtilitiesStatic.GetUNS();
+    }
+
+    public float fuelRatio(){
+        return jumpFuelTime/jumpFuelTimeMax;
     }
 
     public void TwoDimentionalMovement(Vector2 movementVector, float multiplier = 1){
@@ -46,8 +53,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void Jump(){
-        velocity.y = jumpSpeed;
+    public void Jump(){ //called on Update()
+        if(jumpFuelTime > 0){
+            if(velocity.y < verticalSpeedMax){
+                velocity.y += jumpSpeed;
+            }
+            if(velocity.y > verticalSpeedMax){
+                velocity.y = verticalSpeedMax;
+            }
+            jumpFuelTime -= Time.deltaTime;
+        }
     }
 
     public void VerticalMovement(float multiplier = 1f){
@@ -67,6 +82,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void IncreaseFuel(){//called in IsOnGround() and PlayerStateSliding
+        if(jumpFuelTime < jumpFuelTimeMax){
+            jumpFuelTime += Time.fixedDeltaTime;
+        }
+        else{
+            jumpFuelTime = jumpFuelTimeMax;
+        }
+    }
+
     public bool IsOnGround(){
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(-1*Vector3.up) * 3.1f, Color.cyan);
@@ -77,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
             if(velocity.y < 0){
                 velocity.y = 0.0f;
             }
+            IncreaseFuel();
         }
         else{
             OnGround = false;

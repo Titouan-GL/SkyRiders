@@ -568,10 +568,13 @@ MonoBehaviour:
   gravityScale: 3
   navMeshSpeedRandomRange: {x: 9, y: 12}
   goToTarget: {fileID: 1137194529031405209}
+  pathFollowTransforms: []
+  fleeingMagnitude: 0
   positionMoved: {x: 0, y: 0, z: 0}
   randomStrafeTime: {x: 1, y: 4}
   randomJumpInterval: {x: 8, y: 12}
   jumpSpeed: 30
+  angleOfMelee: {x: -30, y: 30}
 --- !u!114 &2487058724050861477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,13 +588,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loseSightDistance: 500
-  sightDistance: 300
-  fireDistance: 200
+  sightDistance: 200
+  fireDistance: 140
   meleeDistance: 8
   stopForward: 5
   fleeDistance: 0
   movement: {fileID: 0}
-  animation: {fileID: 0}
+  animationScript: {fileID: 0}
   combat: {fileID: 0}
   playerDistance: 0
 --- !u!114 &5407631749308934070
@@ -608,16 +611,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 300
   alive: 1
-  slashCollider: {fileID: 8971013615050452026}
-  distanceWeapon: {fileID: 8212568449491124687}
   knockbackTimeMax: 0.4
-  parriedTime: 0.8
   timeBeforeNextStagger: 1
+  knockbackTime: 0
+  nextStaggerTime: 0
+  slashCollider: {fileID: 8971013615050452026}
+  parriedTime: 0.8
+  distanceWeapon: {fileID: 8212568449491124687}
   aiming: 0
   updateCombo: 0
   meleeCombo: 0
-  knockbackTime: 0
-  nextStaggerTime: 0
 --- !u!1 &3779050104187324412
 GameObject:
   m_ObjectHideFlags: 0

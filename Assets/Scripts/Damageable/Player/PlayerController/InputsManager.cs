@@ -9,6 +9,7 @@ public class InputsManager : MonoBehaviour
     [HideInInspector] public PlayerCombat combatScript;
     [HideInInspector] public CameraScript cameraScript;
     [HideInInspector] public UIScript UIScript;
+    [HideInInspector] public Damageable damageable;
 
     [HideInInspector] public bool guard = false;
     [HideInInspector] public bool aiming = false;
@@ -52,14 +53,25 @@ public class InputsManager : MonoBehaviour
         animationScript = GetComponent<PlayerAnimation>();
         movementScript = GetComponent<PlayerMovement>();
         combatScript = GetComponent<PlayerCombat>();
+        damageable = GetComponent<Damageable>();
         currentState = movingState;
         UNS = UtilitiesStatic.GetUNS();
         cameraScript = UNS.playerCamera.gameObject.GetComponentInChildren<CameraScript>();
         UIScript = UNS.UIObject.GetComponent<UIScript>();
+
+        UIScript.InitializeAmmo(combatScript.weaponMech1.ammoMax, 0, combatScript.weaponMech1.ammoUI);
+        UIScript.InitializeAmmo(combatScript.weaponMech2.ammoMax, 1, combatScript.weaponMech2.ammoUI);
     }
 
     void Start(){
         currentState.EnterState(this);
+    }
+
+    public void UpdateUI(){
+        UIScript.UpdateRecharges(combatScript.GetReloadWeapon1(), combatScript.GetReloadWeapon2());
+        UIScript.UpdateFuel(movementScript.fuelRatio());
+        UIScript.UpdateLifeBar(damageable.GetLifeRatio());
+        UIScript.UpdateAmmo(combatScript.weaponMech1.ammoCurrent, combatScript.weaponMech2.ammoCurrent);
     }
     
     public void SwitchState(PlayerBaseState state){
@@ -97,10 +109,10 @@ public class InputsManager : MonoBehaviour
             inputBuffered = Inputs.Fly;
             bufferTimeCurrent = bufferTimeMax;
         }
-        else if(Input.GetButtonDown("Jump")){
+        /*else if(Input.GetButtonDown("Jump")){
             inputBuffered = Inputs.Jump;
             bufferTimeCurrent = bufferTimeMax;
-        }
+        }*/
         else if(Input.GetButtonDown("Fire1")){
             inputBuffered = Inputs.Attack;
             bufferTimeCurrent = bufferTimeMax;

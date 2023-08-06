@@ -37,9 +37,14 @@ public class PlayerStateInAir : PlayerBaseState
         inputs.cameraScript.FixedUpdateNormal(inputs.movementScript.speed);
         
         inputs.UIScript.UINotAim();
+        inputs.UpdateUI();
     }
 
     private void CheckInputs(InputsManager inputs){
+        if(Input.GetButton("Jump")){
+            inputs.movementScript.Jump();
+        }
+        
         if(inputs.attackHeld == InputsManager.Inputs.Guard){
             inputs.SwitchState(inputs.guardState);
         }

@@ -31,6 +31,7 @@ public class PlayerStateMelee : PlayerBaseState
         inputs.cameraScript.FixedUpdateNormal(inputs.movementScript.speed);
         
         inputs.UIScript.UINotAim();
+        inputs.UpdateUI();
     }
 
     private void CheckInputs(InputsManager inputs){
@@ -46,10 +47,8 @@ public class PlayerStateMelee : PlayerBaseState
             inputs.combatScript.UpdateCombo(false);
         }
 
-        bool OnGround = inputs.movementScript.IsOnGround();
-        if(inputs.inputBuffered == InputsManager.Inputs.Jump && OnGround){
+        if(Input.GetButton("Jump")){
             inputs.movementScript.Jump();
-            inputs.inputBuffered = InputsManager.Inputs.None;
         }
         if(inputs.inputBuffered == InputsManager.Inputs.Fly){
             inputs.SwitchState(inputs.flyingState);

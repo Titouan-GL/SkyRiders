@@ -44,17 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24c4b6b96c9afc6bb7d82c35227f34b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 6828216970892530469, guid: 74da5c675fc2ffa3e86b37085302a520, type: 3}
   weaponName: Helikopter gatling
-  recoilTime: 0.1
-  reloadTime: 5
+  ammo: {fileID: 6828216970892530469, guid: 74da5c675fc2ffa3e86b37085302a520, type: 3}
   ammoMax: 20
+  ammoUI: {fileID: 0}
+  recoilTime: 0.1
+  reloadTime: 4
+  loadTime: 2
   firePoints:
   - {fileID: 0}
   fireDirection:
   - {fileID: 0}
   orientationOffset: {x: 0, y: 0, z: 0}
-  reloadTimeCurrent: 0
-  ammoCurrent: 0
   randomizeReloadTime: 1
   randomizeAngleOfAiming: 3
+  ammoCurrent: 0
+  reloadTimeCurrent: 0
+  loadTimeCurrent: 0
+  finishedFiring: 1

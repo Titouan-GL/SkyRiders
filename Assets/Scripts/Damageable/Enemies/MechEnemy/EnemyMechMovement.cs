@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EnemyMechMovement : EnemyMovement
 {
+    [Header("Strafe")]
     [SerializeField] protected Vector2 randomStrafeTime;
     [SerializeField] protected Vector2 randomJumpInterval;
+    [Header("Jump")]
     [SerializeField] protected float jumpSpeed;
+    [Header("Combat")]
+    [SerializeField] protected Vector2 angleOfMelee;
 
 
     protected Vector2 strafe; //direction of strafe
@@ -24,6 +28,16 @@ public class EnemyMechMovement : EnemyMovement
 
     void RandomizeJumpTime(){
         jumpIntervalCurrent = Random.Range(randomJumpInterval.x, randomJumpInterval.y);
+    }
+
+    public bool isInRangeOfMelee(){
+        float angle = UtilitiesStatic.RotationClamped(GetRotationToTarget().y);
+        if(angle < angleOfMelee.y && angle > angleOfMelee.x){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void UpdateStrafing(){

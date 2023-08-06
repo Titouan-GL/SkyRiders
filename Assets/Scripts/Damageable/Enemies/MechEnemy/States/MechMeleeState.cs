@@ -14,9 +14,9 @@ public class MechMeleeState : MechBaseState
     }
 
     public override void UpdatePhysics(MechStateManager mech){
-        
+        mech.movement.UpdateTarget();
         if(mech.combat.updateCombo){
-            if(mech.playerDistance > mech.meleeDistance){
+            if(mech.playerDistance > mech.meleeDistance || !mech.movement.isInRangeOfMelee()){
                 mech.SwitchState(mech.distanceState);
             }
             else{
@@ -24,7 +24,6 @@ public class MechMeleeState : MechBaseState
             }
             mech.combat.updateCombo = false;
         }
-        
     }
 
     public override void OnCollisionEnter(MechStateManager mech){

@@ -6,9 +6,9 @@ public class PlayerCombat : MonoBehaviour
 {
     [HideInInspector] private InputsManager inputs;
 
-    [SerializeField] private Weapon weaponMech1;
-    [SerializeField] private Weapon weaponMech2;
-    [SerializeField] private Weapon weaponPlane1;
+    [SerializeField] public Weapon weaponMech1;
+    [SerializeField] public Weapon weaponMech2;
+    [SerializeField] public Weapon weaponPlane1;
 
     [SerializeField] private GameObject guardCollider;
     [SerializeField] private List<GameObject> slashes;
@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     public int meleeCombo;
     [HideInInspector]public bool updateCombo;
 
-
+    //distance
     public void Fire1Hold(){
         weaponMech1.OnHold();
     }
@@ -32,6 +32,22 @@ public class PlayerCombat : MonoBehaviour
     }
     public void PlaneFire1Hold(){
         weaponPlane1.OnHold();
+    }
+    public bool FinishedFiring(){
+        return weaponMech1.finishedFiring && weaponMech2.finishedFiring;
+    }
+
+    public void ReloadAll(){
+        weaponMech1.Reload();
+        weaponMech2.Reload();
+    }
+
+    public float GetReloadWeapon1(){
+        return weaponMech1.GetReloadProportion();
+    }
+
+    public float GetReloadWeapon2(){
+        return weaponMech2.GetReloadProportion();
     }
     
     //guard

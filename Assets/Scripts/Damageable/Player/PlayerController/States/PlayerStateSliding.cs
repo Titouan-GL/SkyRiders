@@ -25,6 +25,7 @@ public class PlayerStateSliding : PlayerBaseState
         inputs.movementScript.VerticalMovement(0.3f);
         inputs.movementScript.Displacement();
         inputs.movementScript.Rotation();
+        inputs.movementScript.IncreaseFuel();
 
         bool onGround = inputs.movementScript.IsOnGround();
         bool isSliding = inputs.animationScript.Sliding();
@@ -39,12 +40,12 @@ public class PlayerStateSliding : PlayerBaseState
         inputs.cameraScript.FixedUpdateNormal(inputs.movementScript.speed);
         
         inputs.UIScript.UINotAim();
+        inputs.UpdateUI();
     }
 
     private void CheckInputs(InputsManager inputs){
-        if(inputs.inputBuffered == InputsManager.Inputs.Jump){
+        if(Input.GetButton("Jump")){
             inputs.movementScript.Jump();
-            inputs.inputBuffered = InputsManager.Inputs.None;
         }
 
         if(inputs.attackHeld == InputsManager.Inputs.Guard){

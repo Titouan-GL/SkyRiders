@@ -24,6 +24,7 @@ public class PlayerStateFlying : PlayerBaseState
         inputs.cameraScript.FixedUpdatePlane(inputs.movementScript.speed);
 
         inputs.UIScript.UIAim();
+        inputs.UpdateUI();
 
     }
 

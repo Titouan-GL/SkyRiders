@@ -4,25 +4,40 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] protected GameObject ammo;
+    [Header("General")]
     [SerializeField] protected string weaponName;
+    [Header("Ammo")]
+    [SerializeField] protected GameObject ammo;
+    [SerializeField] public int ammoMax = 10;
+    [SerializeField] public GameObject ammoUI;
+    [Header("Load, Reload and Recoil")]
     [SerializeField] public float recoilTime = 0.1f;
     [SerializeField] public float reloadTime = 2f;
-    [SerializeField] public int ammoMax = 10;
+    [SerializeField] public float loadTime = 0f;
+    [Header("FirePoints")]
     [SerializeField] protected List<Transform> firePoints;
     [SerializeField] protected List<Transform> fireDirection;
     [SerializeField] protected Vector3 orientationOffset;
-    protected float recoilTimeCurrent = 0f;
-    [HideInInspector]public float reloadTimeCurrent = 0f;
-    protected bool reloading = true;
-    [HideInInspector] public int ammoCurrent;
-
+    [Header("Randomize")]
     [SerializeField] protected float randomizeReloadTime;
     [SerializeField] protected float randomizeAngleOfAiming;
+
+
+    protected bool reloading = true;
+    protected float recoilTimeCurrent = 0f;
+    [HideInInspector] public int ammoCurrent;
+    [HideInInspector] public float reloadTimeCurrent = 0f;
+    [HideInInspector] public float loadTimeCurrent = 0f;
+
+    [HideInInspector] public bool finishedFiring = true;
     // Start is called before the first frame update
 
     public Vector3 GetFirePoint(){
         return firePoints[0].position;
+    }
+
+    protected void Awake(){
+        loadTimeCurrent = loadTime;
     }
 
     void FixedUpdate()
@@ -39,14 +54,22 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public float GetReloadProportion(){
+        return reloadTimeCurrent/reloadTime;
+    }
+
     public void Reload(){
-        if(!reloading){
+        loadTimeCurrent = loadTime;
+        if(!reloading && ammoCurrent < ammoMax){
             reloading = true;
             reloadTimeCurrent = reloadTime + Random.Range(0,randomizeReloadTime);
         }
     }
 
     public virtual void OnHold(){
+        if(ammoCurrent > 0){
+            reloadTimeCurrent = 0f;
+        }
         Fire();
     }
 
@@ -54,8 +77,8 @@ public class Weapon : MonoBehaviour
         Fire();
     }
 
-    public void Fire(){
-        if(recoilTimeCurrent <= 0 && ammoCurrent > 0){
+    public void Fire(){//called in FixedUpdate
+        if(recoilTimeCurrent <= 0 && ammoCurrent > 0 && loadTimeCurrent <= 0){
             reloading = false;
             recoilTimeCurrent = recoilTime;
             ammoCurrent -= 1;
@@ -71,8 +94,11 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if(ammoCurrent <= 0){
+        if(ammoCurrent <= 0){
             Reload();
+        }
+        if(loadTimeCurrent > 0){
+            loadTimeCurrent -= Time.fixedDeltaTime;
         }
     } 
 }

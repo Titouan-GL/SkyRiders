@@ -35,12 +35,12 @@ public class PlayerStateMoving : PlayerBaseState
         inputs.cameraScript.FixedUpdateNormal(inputs.movementScript.speed);
         
         inputs.UIScript.UINotAim();
+        inputs.UpdateUI();
     }
 
     private void CheckInputs(InputsManager inputs){
-        if(inputs.inputBuffered == InputsManager.Inputs.Jump){
+        if(Input.GetButton("Jump")){
             inputs.movementScript.Jump();
-            inputs.inputBuffered = InputsManager.Inputs.None;
         }
         if(inputs.attackHeld == InputsManager.Inputs.Guard){
             inputs.SwitchState(inputs.guardState);

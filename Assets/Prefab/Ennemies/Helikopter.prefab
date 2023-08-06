@@ -149,7 +149,7 @@ MonoBehaviour:
   gravityScale: 0
   navMeshSpeedRandomRange: {x: 9, y: 11}
   goToTarget: {fileID: 8600031961527051901}
-  fleeDistance: 25
+  fleeingMagnitude: 20
   positionMoved: {x: 0, y: 0, z: 0}
   aimTowardsTarget: {fileID: 2160297111856120894}
   rotatingObject: {fileID: 2640431220508824660}
@@ -170,7 +170,8 @@ MonoBehaviour:
   loseSightDistance: 300
   sightDistance: 200
   fireDistance: 150
-  meleeDistance: 30
+  fleeDistance: 30
+  meleeDistance: 20
   stopForward: 0
   movement: {fileID: 0}
   animationScript: {fileID: 0}

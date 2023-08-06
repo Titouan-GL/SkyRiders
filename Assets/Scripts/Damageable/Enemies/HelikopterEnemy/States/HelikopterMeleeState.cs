@@ -12,11 +12,13 @@ public class HelikopterMeleeState : HelikopterBaseState
         
         heliko.movement.UpdateAimTarget();
         heliko.movement.RotateTowardsTarget();
-        heliko.combat.TryFire();
+        if(heliko.playerDistance > heliko.meleeDistance){
+            heliko.combat.TryFire();
+        }
         heliko.movement.UpdateHeight();
         heliko.movement.SetNavMeshDestination(heliko.movement.goToTarget.position);
         heliko.movement.Flee();
-        if(heliko.playerDistance > heliko.meleeDistance){
+        if(heliko.playerDistance > heliko.fleeDistance){
             heliko.SwitchState(heliko.distanceState);
         }
         

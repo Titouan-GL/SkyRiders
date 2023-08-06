@@ -44,15 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71606d36e203877c1a72b15a18d1afb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 5393767893425997027, guid: 4aaa40062b1ecd8a69b081b7a7772a41, type: 3}
   weaponName: Helikopter Rocket Launcher
-  recoilTime: 0.3
-  reloadTime: 10
+  ammo: {fileID: 5393767893425997027, guid: 4aaa40062b1ecd8a69b081b7a7772a41, type: 3}
   ammoMax: 4
+  ammoUI: {fileID: 0}
+  recoilTime: 0.3
+  reloadTime: 8
+  loadTime: 3
   firePoints: []
   fireDirection: []
   orientationOffset: {x: 0, y: 0, z: 0}
-  reloadTimeCurrent: 0
-  ammoCurrent: 0
   randomizeReloadTime: 3
   randomizeAngleOfAiming: 0
+  ammoCurrent: 0
+  reloadTimeCurrent: 0
+  loadTimeCurrent: 0
+  finishedFiring: 1
+  targets: []
+  layerMaskFire:
+    serializedVersion: 2
+    m_Bits: 0

@@ -10,10 +10,12 @@ public class HelikopterIdleState : HelikopterBaseState
     }
 
     public override void UpdatePhysics(HelikopterStateManager heliko){
-        heliko.combat.TryFire();
+        heliko.movement.SetNavMeshDestination(heliko.movement.GetPatrolLocation());
+        heliko.movement.RotateTowardsTargetPatrol();
+        heliko.movement.UpdatePathTarget();
         heliko.movement.UpdateHeight();
         heliko.movement.UpdateAimTarget();
-        if(heliko.playerDistance < heliko.sightDistance){
+        if(heliko.movement.CanDetectPlayer() && heliko.playerDistance < heliko.sightDistance){
             heliko.SwitchState(heliko.distanceState);
         }
     }

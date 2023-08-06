@@ -56,6 +56,7 @@ public class CameraScript : MonoBehaviour
         else{
             fireTargetTransfom.position = transform.position + transform.forward * 1000f;
         }
+        PreventClipping();
     }
 
     public void FixedUpdateNormal(float speed)
